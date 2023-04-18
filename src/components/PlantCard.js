@@ -1,13 +1,12 @@
 import React, {useState} from "react";
 
-function PlantCard({plant, onDelete, onEdit}) {
+function PlantCard({plant, onDelete}) {
 
-const [outOfStock, setOutOfStock] = useState(true)
-const [price, setPrice] = useState("")
-
+const [inStock, setInStock] = useState(true)
+const [price, setPrice] = useState(plant.price)
 
 function handleClick() {
-  setOutOfStock(!outOfStock)
+  setInStock(!inStock)
 }
 
 function handleDelete() {
@@ -27,16 +26,16 @@ function handleEditSubmit(e) {
     },
     body: JSON.stringify({price})
   })
-  .then((res) => res.json())
-  .then((data) => onEdit(data))
+  // .then((res) => res.json())
+  // .then((data) => onEdit(data))
 }
 
   return (
     <li className="card">
       <img src={plant.image} alt={plant.name} />
       <h4>{plant.name}</h4>
-      <p>Price: {plant.price}</p>
-      {outOfStock ? (
+      <p>Price: {price}</p>
+      {inStock ? (
         <button onClick={handleClick} className="primary">In Stock</button>
       ) : (
         <button onClick={handleClick} >Out of Stock</button>
@@ -46,7 +45,11 @@ function handleEditSubmit(e) {
 
       <label>New Price</label>
       <form onSubmit={handleEditSubmit}>
-        <input onChange={(e) => setPrice(e.target.value)} value={price} type="text"></input>
+        <input 
+          onChange={(e) => setPrice(parseFloat(e.target.value))} 
+          value={price} 
+          type="text"
+        ></input>
         <button>Update Price</button>
       </form>
     </li>
