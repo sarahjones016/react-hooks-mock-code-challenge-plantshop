@@ -1,8 +1,10 @@
 import React, {useState} from "react";
 
-function PlantCard({plant, onDelete}) {
+function PlantCard({plant, onDelete, onEdit}) {
 
 const [outOfStock, setOutOfStock] = useState(true)
+const [price, setPrice] = useState("")
+
 
 function handleClick() {
   setOutOfStock(!outOfStock)
@@ -16,8 +18,17 @@ function handleDelete() {
   .then(() => onDelete(plant))
 }
 
-function handleEdit() {
-  console.log("edit price")
+function handleEditSubmit(e) {
+  e.preventDefault();
+  fetch(`http://localhost:6001/plants/${plant.id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({price})
+  })
+  .then((res) => res.json())
+  .then((data) => onEdit(data))
 }
 
   return (
@@ -30,8 +41,14 @@ function handleEdit() {
       ) : (
         <button onClick={handleClick} >Out of Stock</button>
       )}
+
       <button onClick={handleDelete} >Delete</button>
-      <button onClick={handleEdit} >Edit Price</button>
+
+      <label>New Price</label>
+      <form onSubmit={handleEditSubmit}>
+        <input onChange={(e) => setPrice(e.target.value)} value={price} type="text"></input>
+        <button>Update Price</button>
+      </form>
     </li>
   );
 }

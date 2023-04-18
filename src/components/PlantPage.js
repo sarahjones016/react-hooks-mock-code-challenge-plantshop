@@ -8,6 +8,7 @@ function PlantPage() {
 const [plants, setPlants] = useState([])
 const [search, setSearch] = useState("")
 const [deletePlant, setDeletePlant] = useState("")
+const [updatePrice, setUpdatePrice] = useState("")
 
 useEffect(() => {
   fetch("http://localhost:6001/plants")
@@ -26,12 +27,16 @@ function handleSearch(newSearch) {
 function handleDelete(removedPlant) {
   setDeletePlant(removedPlant)
 }
+
+function handlePriceChange(newPrice) {
+  setUpdatePrice(newPrice)
+}
   
   return (
     <main>
       <NewPlantForm onSubmit={handleSubmit}/>
       <Search onSearch={handleSearch} />
-      <PlantList onDelete={handleDelete} deletePlant={deletePlant} search={search} plants={plants}/>
+      <PlantList updatePrice={updatePrice} onEdit={handlePriceChange} onDelete={handleDelete} deletePlant={deletePlant} search={search} plants={plants}/>
     </main>
   );
 }

@@ -41,24 +41,6 @@
       "name": "Fiddle Leaf Fig",
       "image": "./images/fiddle-leaf-fig.jpg",
       "price": 55
-    },
-    {
-      "name": "venus fly trap",
-      "image": "https://m.media-amazon.com/images/I/815DvMHLBRL.jpg",
-      "price": "100",
-      "id": 8
-    },
-    {
-      "name": "Succulent",
-      "image": "https://cdn.shopify.com/s/files/1/2198/4603/products/TIPPY-PINK.jpg?v=1640667584",
-      "price": "15",
-      "id": 9
-    },
-    {
-      "name": "Animated plant",
-      "image": "https://img.freepik.com/free-vector/plant-emoji_78370-262.jpg?w=2000",
-      "price": "10000",
-      "id": 10
     }
   ]
 }
