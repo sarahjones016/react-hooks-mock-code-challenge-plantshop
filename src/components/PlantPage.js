@@ -7,6 +7,7 @@ function PlantPage() {
 
 const [plants, setPlants] = useState([])
 const [search, setSearch] = useState("")
+const [deletePlant, setDeletePlant] = useState("")
 
 useEffect(() => {
   fetch("http://localhost:6001/plants")
@@ -21,12 +22,16 @@ function handleSubmit(newPlant) {
 function handleSearch(newSearch) {
   setSearch(newSearch)
 }
+
+function handleDelete(removedPlant) {
+  setDeletePlant(removedPlant)
+}
   
   return (
     <main>
       <NewPlantForm onSubmit={handleSubmit}/>
       <Search onSearch={handleSearch} />
-      <PlantList search={search} plants={plants}/>
+      <PlantList onDelete={handleDelete} deletePlant={deletePlant} search={search} plants={plants}/>
     </main>
   );
 }
