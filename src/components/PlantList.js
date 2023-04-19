@@ -1,30 +1,14 @@
 import React from "react";
 import PlantCard from "./PlantCard";
 
-function PlantList({plants, search, deletePlant}) {
+function PlantList({plants, onPlantDelete}) {
 
-  const filteredPlants = plants.filter((plant) => {
-    return plant.name.toLowerCase().includes(search.toLowerCase())
-  })
-
-  const deletedAndFilteredPlants = filteredPlants.filter((plant) => {
-    return plant.id !== deletePlant.id
-  })
-
-  // const edittedPlants = deletedAndFilteredPlants.map((plant) => {
-  //   if (plant.id === updatePrice.id) {
-  //     return updatePrice;
-  //   } else {
-  //     return plant;
-  //   }
-  // })
-
-  const listOfPlants = deletedAndFilteredPlants.map((plant) => {
-    return <PlantCard plant={plant} key={plant.name}/>
+  const arrayOfPlants = plants.map((plant) => {
+    return <PlantCard plant={plant} key={plant.name} onPlantDelete={onPlantDelete}/>
   })
 
   return (
-    <ul className="cards">{listOfPlants}</ul>
+    <ul className="cards">{arrayOfPlants}</ul>
   );
 }
 

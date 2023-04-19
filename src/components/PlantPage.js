@@ -5,50 +5,39 @@ import Search from "./Search";
 
 function PlantPage() {
 
-const [plants, setPlants] = useState([])
-const [search, setSearch] = useState("")
-const [deletePlant, setDeletePlant] = useState("")
-// const [updatePrice, setUpdatePrice] = useState("")
+  const [plants, setPlants] = useState([])
+  const [search, setSearch] = useState("")
 
-useEffect(() => {
-  fetch("http://localhost:6001/plants")
-  .then((res) => res.json())
-  .then((data) => setPlants(data))
-}, [])
+  useEffect(() => {
+    fetch("http://localhost:6001/plants")
+    .then((res) => res.json())
+    .then((data) => setPlants(data))
+  }, [])
 
-function handleSubmit(newPlant) {
-  setPlants([...plants, newPlant])
-}
+  function handleFormSubmit(newPlant) {
+    setPlants([...plants, newPlant])
+  }
 
-function handleSearch(newSearch) {
-  setSearch(newSearch)
-}
+  function handleSearch(newSearch) {
+    setSearch(newSearch)
+  }
 
-function handleDelete(removedPlant) {
-  setDeletePlant(removedPlant)
-}
+  function handleDelete(id) {
+    const filteredAndDeletedPlants = filteredPlants.filter((plant) => {
+      return plant.id !== id
+    })
+  setPlants(filteredAndDeletedPlants)
+  }
 
-// function handlePriceChange(newPrice) {
-//   setUpdatePrice(newPrice)
-// }
-  
+  const filteredPlants = plants.filter((plant) => {
+    return plant.name.toLowerCase().includes(search.toLowerCase())
+  })
+
   return (
     <main>
-      <NewPlantForm 
-        onSubmit={handleSubmit}
-      />
-      <Search 
-        search={search}
-        onSearch={handleSearch}
-      />
-      <PlantList 
-        // updatePrice={updatePrice} 
-        // onEdit={handlePriceChange} 
-        onDelete={handleDelete} 
-        deletePlant={deletePlant} 
-        search={search} 
-        plants={plants}
-      />
+      <NewPlantForm onFormSubmit={handleFormSubmit}/>
+      <Search onPlantSearch={handleSearch}/>
+      <PlantList onPlantDelete={handleDelete} search={search} plants={filteredPlants}/>
     </main>
   );
 }

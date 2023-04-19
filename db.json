@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Aloe",
       "image": "./images/aloe.jpg",
-      "price": 15.99
+      "price": 16.35
     },
     {
       "id": 2,
@@ -37,22 +37,10 @@
       "price": 25.99
     },
     {
-      "id": 7,
-      "name": "Fiddle Leaf Fig",
-      "image": "./images/fiddle-leaf-fig.jpg",
-      "price": 55
-    },
-    {
-      "name": "Animated plant",
-      "image": "https://img.freepik.com/free-vector/plant-emoji_78370-262.jpg?w=2000",
-      "price": 1500,
-      "id": 8
-    },
-    {
       "name": "Venus Fly Trap",
-      "image": "https://cdn.shopify.com/s/files/1/0011/7401/1967/products/vft_pinnacle2_x700.png?v=1655233195",
-      "price": 22.24,
-      "id": 9
+      "image": "https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRQ3LHTWdPz3IlFrP1RfLXuv6jlBNYTpuFe9KcFSRlRwyy-UhRJutDACYXRyl2DOId6W7INKi0iILuD4Qk",
+      "price": 135,
+      "id": 8
     }
   ]
 }
